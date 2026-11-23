@@ -115,37 +115,4 @@
     });
   });
 
-  var form = document.getElementById("contact-form");
-  if (form) {
-    var params = new URLSearchParams(window.location.search);
-    var interest = params.get("topic");
-    if (interest && form.elements.interest) {
-      form.elements.interest.value = interest;
-    }
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      var data = new FormData(form);
-      var interestField = form.elements.interest;
-      var interest = interestField && interestField.selectedIndex >= 0
-        ? interestField.options[interestField.selectedIndex].text
-        : (data.get("interest") || "General");
-      var body = [
-        "Name: " + (data.get("name") || ""),
-        "Phone: " + (data.get("phone") || ""),
-        "Email: " + (data.get("email") || ""),
-        "Interest: " + interest,
-        "",
-        data.get("message") || ""
-      ].join("\n");
-      var to = form.getAttribute("data-to") || "";
-      var url = "mailto:" + to
-        + "?subject=" + encodeURIComponent("Xtreme SOULutions website: " + interest)
-        + "&body=" + encodeURIComponent(body);
-      window.location.href = url;
-      var status = document.getElementById("form-status");
-      if (status) {
-        status.textContent = "Your email app should open with this message. Send it from there. Nothing is stored on the website.";
-      }
-    });
-  }
 })();
