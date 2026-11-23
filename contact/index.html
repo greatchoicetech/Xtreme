@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact | Xtreme SOULutions</title>
-  <meta name="description" content="Call Xtreme SOULutions at (352) 694-4888 or send a message through Facebook. Mailing address PO Box 5487, Ocala, FL 34478.">
+  <meta name="description" content="Call Xtreme SOULutions at (352) 694-4888 or send a message from your own email. Mailing address PO Box 5487, Ocala, FL 34478.">
   <link rel="canonical" href="https://xtremesoulutions.org/contact/">
   <link rel="icon" href="../assets/images/brand/favicon-32.webp" type="image/webp" sizes="32x32">
   <link rel="icon" href="../assets/images/brand/favicon-192.webp" type="image/webp" sizes="192x192">
@@ -97,12 +97,12 @@
           <li><a href="https://www.facebook.com/xtremesoulutions">Facebook</a></li>
           <li>EIN 30-0293324</li>
         </ul>
-        <p class="note">This is a static website, so the form does not sit on a server. It copies your note so you can paste it into a phone message or a Facebook message. We do not store what you type.</p>
+        <p class="note">Send opens the email app on your computer or phone, with this note already filled in. You send it from your own email. Nothing is stored on the website.</p>
       </div>
-      <form id="contact-form" class="form">
+      <form id="contact-form" class="form" data-to="">
         <label>Name <input name="name" required autocomplete="name"></label>
         <label>Phone <input name="phone" type="tel" required autocomplete="tel"></label>
-        <label>Email <input name="email" type="email" autocomplete="email"></label>
+        <label>Email <input name="email" type="email" required autocomplete="email"></label>
         <label>Interest
           <select name="interest">
             <option value="general">General</option>
@@ -114,7 +114,7 @@
           </select>
         </label>
         <label>Message <textarea name="message" required></textarea></label>
-        <button class="btn" type="submit">Copy my message</button>
+        <button class="btn" type="submit">Send by email</button>
         <p id="form-status" role="status"></p>
       </form>
     </div>
@@ -166,6 +166,6 @@
     <form method="dialog"><button type="submit">Close</button></form>
     <img alt="">
   </dialog>
-  <script src="../assets/js/site.js?v=4" defer></script>
+  <script src="../assets/js/site.js?v=5" defer></script>
 </body>
 </html>

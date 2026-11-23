@@ -125,25 +125,26 @@
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       var data = new FormData(form);
-      var text = [
-        "Xtreme SOULutions website message",
-        "Name: " + data.get("name"),
-        "Phone: " + data.get("phone"),
-        "Email: " + data.get("email"),
-        "Interest: " + data.get("interest"),
+      var interestField = form.elements.interest;
+      var interest = interestField && interestField.selectedIndex >= 0
+        ? interestField.options[interestField.selectedIndex].text
+        : (data.get("interest") || "General");
+      var body = [
+        "Name: " + (data.get("name") || ""),
+        "Phone: " + (data.get("phone") || ""),
+        "Email: " + (data.get("email") || ""),
+        "Interest: " + interest,
         "",
-        data.get("message")
+        data.get("message") || ""
       ].join("\n");
+      var to = form.getAttribute("data-to") || "";
+      var url = "mailto:" + to
+        + "?subject=" + encodeURIComponent("Xtreme SOULutions website: " + interest)
+        + "&body=" + encodeURIComponent(body);
+      window.location.href = url;
       var status = document.getElementById("form-status");
-      var done = function (copied) {
-        status.textContent = copied
-          ? "Copied. Call (352) 694-4888 or paste this into a Facebook message. Nothing is stored on the website."
-          : "Call (352) 694-4888 or message us on Facebook and include this note: " + text;
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () { done(true); }).catch(function () { done(false); });
-      } else {
-        done(false);
+      if (status) {
+        status.textContent = "Your email app should open with this message. Send it from there. Nothing is stored on the website.";
       }
     });
   }
